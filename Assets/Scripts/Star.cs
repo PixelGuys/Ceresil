@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Star : MonoBehaviour
 {
-
     private Light lightComp;
 
     void Start()
@@ -14,7 +13,6 @@ public class Star : MonoBehaviour
 
     void Update()
     {
-        float intensity = Time.time % 8;
-        lightComp.intensity = intensity;
+        
     }
 }
