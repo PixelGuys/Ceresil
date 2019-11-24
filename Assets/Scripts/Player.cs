@@ -12,15 +12,25 @@ public class Player : MonoBehaviour
         body.useGravity = false;
     }
 
-    void Update()
-    {
+    void ApplyGravity(Attractor attractor) {
+        Vector3 dir = attractor.gameObject.transform.position - gameObject.transform.position;
+        float magSqr = dir.sqrMagnitude;
+        if (magSqr > 0.0001f) {
+            body.AddForce(attractor.gravityForce * dir.normalized / magSqr,
+                ForceMode.Acceleration);
+        }
+    }
+
+    void Update() {
         float hor = Input.GetAxis("Horizontal") * speed;
         float ver = Input.GetAxis("Vertical") * speed;
         gameObject.transform.Translate(new Vector3(hor, 0, ver), Space.Self);
-        
-        // gravity
-        GameObject attractor = gameObject.transform.parent.gameObject;
-        Vector3 dir = attractor.transform.position - gameObject.transform.position;
-        body.AddForce(0.1f * dir);
+    }
+
+    void FixedUpdate()
+    {
+        foreach (Attractor attractor in Ceresil.attractors) {
+            ApplyGravity(attractor);
+        }
     }
 }
