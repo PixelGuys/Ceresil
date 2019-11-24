@@ -6,6 +6,9 @@ public class Planet : MonoBehaviour
 {
 
     float deg = 0;
+    public float starDistance = 100;
+
+    public float speed = 0.01f;
 
     void Start()
     {
@@ -14,9 +17,9 @@ public class Planet : MonoBehaviour
 
     void Update()
     {
-        Vector3 pos = new Vector3(Mathf.Cos(deg) * 36, 0, Mathf.Sin(deg) * 36);
+        Vector3 pos = new Vector3(Mathf.Cos(deg) * starDistance, 0, Mathf.Sin(deg) * starDistance);
         gameObject.transform.localPosition = pos;
-        gameObject.transform.Rotate(0, 0.3f, 0.1f);
-        deg += 0.01f;
+        gameObject.transform.Rotate(0f, 0.3f, 0f);
+        deg += speed;
     }
 }
