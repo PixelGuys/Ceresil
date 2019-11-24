@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     float speed = 0.1f;
     Rigidbody body;
+    
     void Start()
     {
         body = gameObject.GetComponent<Rigidbody>();
